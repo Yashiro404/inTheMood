@@ -16,6 +16,15 @@ router.post("/", async (req, res) => {
   res.json(nuevo);
 });
 
+// actualizar
+router.put("/:id", async (req, res) => {
+  const actualizado = await Image.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json({ 
+    mensaje: "Actualizado correctamente", 
+    data: actualizado 
+  });
+});
+
 // Eliminar
 router.delete("/:id", async (req, res) => {
   await Image.findByIdAndDelete(req.params.id);
